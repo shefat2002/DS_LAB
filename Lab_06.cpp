@@ -1,4 +1,5 @@
 /*
+Lab-06
 .......using pointer
 
 1. Write a program uing pointers to pergorm the following tasts.
