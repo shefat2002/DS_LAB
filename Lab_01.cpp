@@ -1,3 +1,26 @@
+/*
+Lab_01
+
+1. Taking 100 numbers between 0 & 100 as input randomly in
+(a) an one-dimensional array
+(b) a two-dimensional array.
+2. Counting even and odd numbers from an one-dimensional array.
+3. Printing the numbers those are multiple of 5 and 10 from a
+two-dimensional
+array.
+4. Finding the occurrences of particular number in
+(a) an one-dimensional array
+(b) a two-dimensional array.
+5. Finding the summation of
+(a) Diagonal numbers
+(b) Non-diagonal numbers from a two-dimensional array.
+6. Performing the multiplication of two matrices.
+7. Merging the contents of two one-dimensional arrays.
+8. Sorting the elements of an one-dimensional array using Bubble
+sort.
+
+*/
+
 #include <bits/stdc++.h>
 using namespace std;
 
