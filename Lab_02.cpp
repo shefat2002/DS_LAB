@@ -1,3 +1,14 @@
+/*
+Lab_02
+
+1. Perform a binary search in an array.
+2. Insertion of an item in an array.
+3. Deletion of an item from an array.
+4. Printing out the frequency of each item in a given array.
+
+*/
+
+
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -7,32 +18,11 @@ using namespace std;
 /*---------------------------------------------------------------------------*/
 
 
-int binarysearch(int a[], int l, int r, int x)
-{
-    while (l <= r) {
-        int m = l + (r - l) / 2;
-        if (a[m] == x) return m;
-        if (a[m] < x) l = m + 1;
-        else r = m - 1;
-    }
-    return -1;
-}
+//User-Defined Functions
+int binarysearch(int a[], int l, int r, int x);
+int* insertion(int a[], int n , int pos, int x);
+int deletion(int a[], int n , int pos);
 
-int* insertion(int a[], int n , int pos, int x)
-{
-    for(int i = n+1 ; i >= pos ; i--){
-        a[i] = a[i-1];
-    }
-    a[pos -1] = x;
-    return a;
-}
-int deletion(int a[], int n , int pos)
-{
-    for(int i = pos; i < n ; i++){
-        a[i] = a[i+1];
-    }
-    return n;
-}
 
 
 void solve()
@@ -107,9 +97,35 @@ void solve()
     }
 }
 
-
 int main()
 {
     solve();
     return 0;
 }
+
+int binarysearch(int a[], int l, int r, int x)
+{
+    while (l <= r) {
+        int m = l + (r - l) / 2;
+        if (a[m] == x) return m;
+        if (a[m] < x) l = m + 1;
+        else r = m - 1;
+    }
+    return -1;
+}
+int* insertion(int a[], int n , int pos, int x)
+{
+    for(int i = n+1 ; i >= pos ; i--){
+        a[i] = a[i-1];
+    }
+    a[pos -1] = x;
+    return a;
+}
+int deletion(int a[], int n , int pos)
+{
+    for(int i = pos; i < n ; i++){
+        a[i] = a[i+1];
+    }
+    return n;
+}
+
