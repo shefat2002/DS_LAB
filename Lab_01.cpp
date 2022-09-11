@@ -1,4 +1,3 @@
-
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -9,29 +8,19 @@ using namespace std;
 
 
 //Sorting(ascending order) User-Defined Function
-void Sort(int arr[] , int a)
-{
-    for(int i = 0 ; i < a -1 ;i++){
-        for(int j = 0 ; j < a-1 ;j++){
-            if(arr[j]>arr[j+1]){
-                int temp = arr[j];
-                arr[j] = arr[j+1];
-                arr[j+1] = temp;
-            }
-        }
-    }
+void BubbleSort(int arr[] , int a);
 
-}
 int mul[3][3] ;
 void solve()
 {
-    //Task #01
+    //Task #01(a)
     //Assign 100 random elements in One-Dimensional Array using rand() function.
     int a[1000];
     for(int i = 0 ; i < 100 ; i++){
         a[i] = rand()%1000;
     }
 
+    //Task #01(b)
     //Assign 100 random elements in Two-Dimensional Array using rand() function.
     int b[10][10];
     for(int i = 0 ; i < 10 ;i++){
@@ -118,50 +107,31 @@ void solve()
     */
     nl;nl;
 
-    //Task #05
-    //Calculation of Diagonal and Non-Diagonal numbers from Two-Dimensional Array.
+    //Task #05(a)
+    //Calculation of Diagonal numbers from Two-Dimensional Array.
     int   sum1 = 0 ,sum2 = 0;
     for(int i = 0 ; i< 10 ; i++){
         for(int j = i; j< i+1 ; j++){
             sum1 += b[i][j];
         }
     }
+    cout << "Diagonal Numbers summation = " << sum1;
+    nl;
+
+    //Task #05(b)
+    //Calculation of Non-Diagonal numbers from Two-Dimensional Array.
     for(int i = 0 ; i < 10 ; i++){
         for(int j = 0; j< 10 ; j++){
             if(j != i) sum2 += b[i][j];
         }
     }
-
-    cout << "Diagonal Numbers summation = " << sum1; nl;
     cout << "Non-Diagonal Numbers summation = " << sum2 ;
     nl;nl;
 
 
 
     //Task #06
-    //Sorting
-    cout << "Sorting\n";
-    int c[10];
-    for(int i = 0 ; i < 10 ; i++){
-        c[i] = rand()%100;
-    }
-    cout << "Before Sorting: ";
-    for(int i = 0 ; i < 10 ; i++){
-        cout << c[i] <<   ' ';
-    }
-    cout << endl;
-    int arrsize = sizeof(c)/sizeof(c[0]);
-    Sort(c , arrsize);
-    cout << "After Sorting: ";
-    for(int i = 0 ; i < 10 ; i++){
-        cout << c[i] <<   ' ';
-    }
-    nl;nl;
-
-
-
-    //Task #07
-    //matrix multiplication
+    //Matrix Multiplication
     cout << "Matrix:\n";
     int m1[3][3] , m2[3][3];
 
@@ -209,9 +179,9 @@ void solve()
     nl;
 
 
-    //Task #08
+    //Task #07
     //merge
-    cout << endl << "Merge:\n";
+    cout << "Before Merge:\n";
     int arr1[5] , arr2[5];
     for(int i = 0 ; i < 5;i++){
         arr1[i] = rand()%10;
@@ -245,15 +215,40 @@ void solve()
     for(int i = 0 ; i < 10 ; i++){
         cout << mergearray[i] << ' ';
     }
+    nl;nl;
+
+    //Task #08
+    //Sorting
+    cout << "Sorting\n";
+    cout << "Before Sorting: ";
+    for(int i = 0 ; i < 100 ; i++){
+        cout << a[i] <<   ' ';
+    }
     nl;
-
+    BubbleSort(a , 100);
+    cout << "After Sorting: ";
+    for(int i = 0 ; i < 100 ; i++){
+        cout << a[i] <<   ' ';
+    }
+    nl;nl;
 }
-
 
 int main()
 {
     solve();
-    nl;
     return 0;
 }
 
+void BubbleSort(int arr[] , int a)
+{
+    for(int i = 0 ; i < a -1 ;i++){
+        for(int j = 0 ; j < a-1 ;j++){
+            if(arr[j]>arr[j+1]){
+                int temp = arr[j];
+                arr[j] = arr[j+1];
+                arr[j+1] = temp;
+            }
+        }
+    }
+
+}
