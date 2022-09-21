@@ -20,7 +20,7 @@ int main()
     int upper_sum = 0;
     for (int i = 0; i < n; i++){
         for (int j = 0; j < m; j++) {
-            if (i <= j) {
+            if (i < j) {
                 upper_sum += matrix[i][j];
             }
         }
@@ -31,7 +31,7 @@ int main()
     int mx= -1;
     for (int i = 0; i < n; i++){
         for (int j = 0; j < m; j++) {
-            if (j <= i) {
+            if (j < i) {
                 if(mx <matrix[i][j]) mx = matrix[i][j];
             }
         }
