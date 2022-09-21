@@ -17,7 +17,7 @@ int main()
         freq[c[i]]++;
         if(freq[c[i]] >1) mark[i]=1;
         if(c[i] > mx) mx = c[i];
-        if(c[i] < mx) mn = c[i];
+        if(c[i] < mn) mn = c[i];
     }
     cout << n;nl;
     int te[1001] = {0};
