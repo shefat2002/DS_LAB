@@ -3,15 +3,20 @@ using namespace std;
 
 #define nl cout << "\n";
 
-class Node{
-public:
+struct Node{
     int data;
     Node *link;
 };
 
+struct Marks{
+    int student, subject, mark;
+    Marks *next;
+};
+
 void insertion(int new_data, Node** head)
 {
-    Node* new_node= new Node();
+    Node* new_node;
+    new_node = (Node*)malloc(sizeof(Node));
     Node* last = *head;
     new_node-> data = new_data;
     new_node->link = NULL;
@@ -101,6 +106,53 @@ void print_odd(Node *node)
     }
 }
 
+void InsertMark(int sub, int stu , int mark, Marks** head)
+{
+    Marks *ins = (Marks*)malloc(sizeof(Marks));
+    ins -> subject = sub;
+    ins -> student = stu;
+    ins -> mark = mark;
+    ins -> next = NULL;
+
+    if(*head == NULL){
+        *head = ins;
+        return;
+    }
+    else{
+        Marks* c = *head;
+        while(c->next != NULL){
+            c = c->next;
+        }
+        c ->next = ins;
+    }
+}
+
+double subavg(int i, Marks** head)
+{
+    double sum = 0;
+    Marks* p = *head;
+    while(p){
+        if(p-> subject == i){
+            sum +=(double)p ->mark;
+        }
+        p = p -> next;
+    }
+    return sum;
+}
+
+double stuavg(int i, Marks** head)
+{
+    double sum = 0;
+    Marks* p = *head;
+    while(p){
+        if(p->student == i){
+            sum +=(double) p ->mark;
+        }
+        p = p -> next;
+    }
+    return sum;
+}
+
 
 int main()
 {
@@ -151,7 +203,31 @@ int main()
     print_odd(head);
     nl;nl;
 
+    Marks *header = NULL;
 
+    Marks *new_marks = (Marks*)malloc(sizeof(Marks));
+
+    for(int i = 0 ; i < 5 ; i++){
+        cout << "Enter Subject " << i+1 << " marks: ";
+        for(int j = 0 ; j < 5 ;j++){
+            int mark;
+            cin >> mark;
+            InsertMark(i,j,mark, &header);
+        }
+    }
+
+    cout << "Enter a Subject(0-4) to find average mark: ";
+    int m; cin >> m;
+    double sum = 0, avg = 0;
+
+    cout << "Average Mark of Subject " << m << ": " << subavg(m, &header)/5;
+    nl;nl;
+    cout << "Enter a Student(0-4) to find average mark: ";
+    cin >> m;
+    sum = 0, avg = 0;
+
+    cout << "Average Mark of Student " << m << ": " << stuavg(m, &header)/5;
+    nl;nl;
 
     return 0;
 }
