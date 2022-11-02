@@ -50,6 +50,44 @@ void solve()
     cout << top-1;
     nl;
 
+    nl;
+    fast;
+    int n; cin >> n;
+    int a[n];
+    int f = 0 ,r =0;
+    //initial value
+    for(int i = 0; i < 5 ; i++){
+        cin >> a[i];
+        r++;
+    }
+    for(int i = 0 ; i< r ; i++){
+        cout << a[i] << ' ';
+    }
+    nl;
+    cout << f << ' ' << r-1;
+    nl;
+
+    //delete
+    int del; cin >> del;
+    f+=del;
+    cout << f << ' ';
+    for(int i = f ; i< r ; i++){
+        cout << a[i] << ' ';
+    }
+    nl;
+    
+    //insert
+    cin >> n;
+    for(int i = 0 ; i < n ; i++){
+        int x ; cin >> x;
+        a[r] = x;
+        r++;
+    }
+    cout << r-1 << ' ';
+    for(int i = f ; i < r ; i++){
+        cout << a[i] << ' ';
+    }
+    nl;
 
 }
 
