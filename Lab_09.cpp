@@ -55,6 +55,7 @@ int main()
     }
 
     //siblings
+    /*
     cout << "Enter the value to print it's siblings:";
     cin >> a;
     for(int i = 0; i < N ;i++){
@@ -74,8 +75,14 @@ int main()
             
         }
     }
+    */
 
     //generation
+    cout << "Enter a generation: ";
+    cin >> a;
+    for(int i = pow(2,a-1) ; i < pow(2, a) ;i++){
+        if(tree[i] !=0) cout << tree[i] << ' ';
+    }
 
     return 0;
 }
