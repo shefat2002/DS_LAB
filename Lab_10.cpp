@@ -56,6 +56,45 @@ void postorder(node *root)
     cout << root -> data << " ";
 }
 
+node* insert(node* root, int val)
+{
+    if(root == NULL) return newNode(val);
+    if(val < root -> data) root ->lchild = insert(root ->lchild, val);
+    else if(val > root -> data) root ->rchild = insert(root ->rchild, val);
+    return  root;
+}
+
+node* minval(node *root)
+{
+    node* current = root;
+    while(current && current ->lchild !=NULL) current = current ->lchild;
+    return current;
+}
+
+node* deletion(node *root, int x)
+{
+    if(root == NULL) return root;
+    if(x < root ->data) root ->lchild = deletion(root->lchild, x);
+    else if(x > root ->data) root ->rchild = deletion(root ->rchild, x);
+    else{
+        if(root ->lchild == NULL && root ->rchild == NULL) return NULL;
+        else if(root -> lchild == NULL){
+            node *temp = root ->rchild;
+            free(root);
+            return temp;
+        }
+        else if(root -> rchild == NULL){
+            node *temp = root ->lchild;
+            free(root);
+            return temp;
+        }
+        node *temp = minval(root -> rchild);
+        root ->data = temp ->data;
+        root ->rchild = deletion(root ->rchild, temp ->data);
+    }
+    return root;
+}
+
 
 int main()
 {
@@ -83,6 +122,19 @@ int main()
     
     if(search(root,n)) cout << "Item found!\n";
     else cout << "Item Not Found\n";
+    cout << "Enter a value to insert in BST:";
+    cin >>n ;
+    insert(root, n);
+    nl;
+    cout << "After insertion Ineorder travarsal: ";
+    inorder(root); nl;
+
+    cout << "Enter a value to delete from BST:";
+    cin >>n ;
+    deletion(root, n);
+    nl;
+    cout << "After deletion Ineorder travarsal: ";
+    inorder(root); nl;
     
     return 0;
 }
