@@ -3,14 +3,8 @@ using namespace std;
 #define nl cout << "\n";
 #define ll long long;
 
-/*
-01. Creation
-02. Insertion
-03. Deletion
-04. Heapsort
-*/
 
-void heapify(int a[], int n, int i)
+void heapify_maxheap(int a[], int n, int i)
 {
     int mx = i;
     int l = 2*i +1;
@@ -23,16 +17,41 @@ void heapify(int a[], int n, int i)
     }
     if(mx != i){
         swap(a[i] , a[mx]);
-        heapify(a, n, mx);
+        heapify_maxheap(a, n, mx);
+    }
+    
+}
+
+void MaxHeap(int a[], int n)
+{
+    for(int i = (n/2)-1 ; i >=0 ; i--){
+        heapify_maxheap(a, n ,i);
+    }
+}
+
+void heapify_minheap(int a[], int n, int i)
+{
+    int mn = i;
+    int l = 2*i +1;
+    int r = 2*i +2;
+    if(l < n && a[l] < a[mn]){
+        mn = l;
+    }
+    if(r < n && a[r] < a[mn]){
+        mn = r;
+    }
+    if(mn != i){
+        swap(a[i] , a[mn]);
+        heapify_minheap(a, n, mn);
     }
     
 }
 
 
-void constructHeap(int a[], int n)
+void MinHeap(int a[], int n)
 {
     for(int i = (n/2)-1 ; i >=0 ; i--){
-        heapify(a, n ,i);
+        heapify_minheap(a, n ,i);
     }
 }
 
@@ -48,17 +67,17 @@ int find(int a[] ,int n, int x)
 void heapSort(int a[] ,  int n)
 {
     for(int i = n/2 -1 ; i >=0 ; i--){
-        heapify(a, n , i);
+        heapify_maxheap(a, n , i);
     }
     for(int i = n-1; i >0 ; i--){
         swap(a[0], a[i]);
-        heapify(a,i,0);
+        heapify_maxheap(a,i,0);
     }
 }
 
 int main()
 {
-    int a[] = {1,2,3,5,7,8,9,11,15,16,19,21};
+    int a[] = {1,2,3,15,7,8,21,11,5,16,19,9};
 
     int n = sizeof(a)/sizeof(a[0]);
 
@@ -68,21 +87,30 @@ int main()
     }
     nl;
     */
-    constructHeap(a,n);
+    MaxHeap(a,n);
 
-    cout << "Heap:";nl;
+    cout << "Max Heap:";nl;
 
     for(int i = 0 ; i < n ; i++){
         cout << a[i] << ' ';
     }
-    nl;
+    nl;nl;
 
+    MinHeap(a,n);
+
+    cout << "Min Heap:";nl;
+
+    for(int i = 0 ; i < n ; i++){
+        cout << a[i] << ' ';
+    }
+    nl;nl;
+    /*
     cout << "Enter a value to insert: "; 
     int x; cin >> x;
 
     a[n] = x;
     n++;
-    constructHeap(a,n);
+    MaxHeap(a,n);
 
     cout << "After insertion :";nl;
 
@@ -99,7 +127,7 @@ int main()
     a[pos] = a[n-1];
     n--;
 
-    constructHeap(a,n);
+    MaxHeap(a,n);
 
     cout << "After Deletion :";nl;
 
@@ -107,18 +135,15 @@ int main()
         cout << a[i] << ' ';
     }
     nl;
-
+    */
     heapSort(a,n);
 
-    cout << "After Sorting(Ascending Order):";nl;
+    cout << "Heap Sort:";nl;
 
     for(int i = 0 ; i < n ; i++){
         cout << a[i] << ' ';
     }
     nl;
-
-    
-
 
     return 0;
 }
